@@ -18,7 +18,7 @@ class LifeCycle extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('I am Going Bye');
+    console.log('I am Going, Bye');
   }
 
   render() {

@@ -26,7 +26,24 @@ class App extends React.Component {
     super(props);
     this.state = {
       showLifeCycle: true,
+      updateTrigger: false,
     };
+  }
+  toggleLifeCycle = () => {
+    this.setState((prevState) => ({
+      showLifeCycle: !prevState.showLifeCycle,
+    }));
+  };
+
+  triggerUpdate = () => {
+    this.setState((prevState) => ({
+      updateTrigger: !prevState.updateTrigger
+    }));
+  };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.updateTrigger !== this.state.updateTrigger) {
+      console.log('App component did update', prevProps, prevState);
+    }
   }
   render() {
     return (
@@ -34,16 +51,13 @@ class App extends React.Component {
         {/* <SessionOneCounter /> */}
         {/* <SessionTwoCounter /> */}
         {/* <Forms /> */}
-        {/* <LifeCycle /> */}
-        {/* <button
-          onClick={() =>
-            this.setState((prevState) => ({
-              showLifeCycle: !prevState.showLifeCycle,
-            }))
-          }
-        >
-          Show/Hide LifeCylce Component
-        </button> */}
+        {this.state.showLifeCycle && <LifeCycle />}
+          <button onClick={this.toggleLifeCycle}>
+            Show/Hide LifeCycle Component
+          </button>
+          <button onClick={this.triggerUpdate}>
+            Trigger LifeCycle Update
+          </button>
         {/* <FunctionalComponent /> */}
         {/* <ApiComponent /> */}
         {/* <MyFunctionalComponent t2={'Hello World T2'} name="Ajo" /> */}
@@ -58,8 +72,8 @@ class App extends React.Component {
         {/* <FCUseMemo /> */}
         {/* <FCContext /> */}
         {/* <FCReducer /> */}
-        <NormalRedux />
-        <AsyncRedux />
+        {/* <NormalRedux /> */}
+        {/* <AsyncRedux /> */}
       </div>
     );
   }
