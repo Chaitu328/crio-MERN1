@@ -40,11 +40,7 @@ class App extends React.Component {
       updateTrigger: !prevState.updateTrigger
     }));
   };
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.updateTrigger !== this.state.updateTrigger) {
-      console.log('App component did update', prevProps, prevState);
-    }
-  }
+
   render() {
     return (
       <div>
